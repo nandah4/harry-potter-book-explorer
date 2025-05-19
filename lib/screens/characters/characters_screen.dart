@@ -1,12 +1,10 @@
-import 'package:fetch_stories/screens/home/home_screen.dart';
+import 'package:fetch_stories/screens/characters/tabs/spells_tab.dart';
 import 'package:fetch_stories/screens/characters/tabs/Characters_tab.dart';
 import 'package:flutter/material.dart';
-import 'package:http/retry.dart';
 
 class CharactersScreen extends StatelessWidget {
   CharactersScreen({super.key});
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -15,21 +13,21 @@ class CharactersScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: AppBar(
-              backgroundColor: Colors.white,
-              leadingWidth: 20,
-              centerTitle: false,
-              leading: Icon(
-                Icons.arrow_back_ios_new_outlined,
-                size: 22,
-              ),
-              title: Text(
-                "Characters",
-                style: TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontSize: 21,
-                    fontWeight: FontWeight.w500),
-              ),
-            ),
+                backgroundColor: Colors.white,
+                leadingWidth: 20,
+                centerTitle: true,
+                title: GestureDetector(
+                  onDoubleTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "Characters",
+                    style: TextStyle(
+                        fontFamily: 'OpenSans',
+                        fontSize: 21,
+                        fontWeight: FontWeight.w500),
+                  ),
+                )),
           )),
       body: DefaultTabController(
           length: 3,
@@ -60,7 +58,7 @@ class CharactersScreen extends StatelessWidget {
                   Expanded(
                       child: TabBarView(children: [
                     CharactersTab(),
-                    Text("Characters"),
+                    SpellsTab(),
                     Text("Characters"),
                   ]))
                 ],

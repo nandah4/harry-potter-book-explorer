@@ -1,3 +1,4 @@
+import 'package:fetch_stories/core/utils/datetime_parser.dart';
 import 'package:flutter/material.dart';
 
 class CharacterModel {
@@ -7,7 +8,7 @@ class CharacterModel {
   final String interpretedBy;
   final List<String> children;
   final String image;
-  final String birthdate;
+  final DateTime birthdate;
   final int index;
 
   CharacterModel(
@@ -27,7 +28,7 @@ class CharacterModel {
         'nickname': String nickname,
         'hogwartsHouse': String hogwartsHouse,
         'interpretedBy': String interpretedBy,
-        'children': List<String> children,
+        'children': List<dynamic> children,
         'image': String image,
         'birthdate': String birthdate,
         'index': int index
@@ -37,11 +38,11 @@ class CharacterModel {
             nickname: nickname,
             hogwartsHouse: hogwartsHouse,
             interpretedBy: interpretedBy,
-            children: children,
+            children: children.cast<String>(),
             image: image,
-            birthdate: birthdate,
+            birthdate: DatetimeParser.dateFormater(birthdate),
             index: index),
-      _ => throw Exception("Failed to load Character")
+      _ => throw Exception("Failed to load Characters")
     };
   }
 }

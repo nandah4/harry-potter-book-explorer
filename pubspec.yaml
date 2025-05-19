@@ -64,10 +64,6 @@ flutter:
   assets:
     - assets/bg-image.jpeg
     - assets/images/profile_img.jpg
-    - assets/adduser_dark.svg
-    - assets/home_dark.svg
-    - assets/link.svg
-    - assets/tag_act.svg
     - assets/icons/Document.svg
     - assets/icons/Heart.svg
     - assets/icons/Home.svg

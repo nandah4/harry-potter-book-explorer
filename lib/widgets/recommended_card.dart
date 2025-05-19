@@ -1,12 +1,9 @@
-import 'package:fetch_stories/data/models/book_model.dart';
-import 'package:fetch_stories/core/services/books_service.dart';
 import 'package:flutter/material.dart';
-import 'package:fetch_stories/data/models/character_model.dart';
 
 class RecommendedCard extends StatelessWidget {
-  String? title;
-  String? description;
-  String? image;
+  final String? title;
+  final String? description;
+  final String? image;
 
   RecommendedCard({super.key, this.title, this.description, this.image});
 

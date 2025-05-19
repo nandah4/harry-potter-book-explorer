@@ -1,6 +1,5 @@
-import 'package:fetch_stories/data/models/character_model.dart';
+
 import 'package:fetch_stories/screens/detail_book_screen.dart';
-import 'package:fetch_stories/widgets/custom_bottom_app_bar.dart';
 import 'package:fetch_stories/widgets/recommended_card.dart';
 import 'package:flutter/material.dart';
 import 'package:fetch_stories/data/models/book_model.dart';
@@ -16,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

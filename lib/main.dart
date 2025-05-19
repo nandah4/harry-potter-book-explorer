@@ -18,8 +18,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyApp extends State<MyApp> {
-  final List<Widget> _pages = [HomeScreen(), CharactersScreen()];
-
   int? _selectedIndex;
 
   @override
@@ -47,6 +45,8 @@ class _MyApp extends State<MyApp> {
 
     _saveIndexToPref();
   }
+
+  final List<Widget> _pages = [HomeScreen(), CharactersScreen()];
 
   @override
   Widget build(BuildContext context) {
