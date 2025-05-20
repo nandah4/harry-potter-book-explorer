@@ -1,3 +1,4 @@
+import 'package:fetch_stories/screens/characters/tabs/houses_tab.dart';
 import 'package:fetch_stories/screens/characters/tabs/spells_tab.dart';
 import 'package:fetch_stories/screens/characters/tabs/Characters_tab.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,7 @@ class CharactersScreen extends StatelessWidget {
                       child: TabBarView(children: [
                     CharactersTab(),
                     SpellsTab(),
-                    Text("Characters"),
+                    HousesTab(),
                   ]))
                 ],
               ))),

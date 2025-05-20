@@ -12,7 +12,7 @@ class SpellsService {
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
-        final List<dynamic> spells = await jsonDecode(response.body);
+        final List<dynamic> spells =  jsonDecode(response.body);
 
         return spells
             .map((el) => SpellModel.fromJson(el as Map<String, dynamic>))
