@@ -14,21 +14,17 @@ class CharactersScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: AppBar(
-                backgroundColor: Colors.white,
-                leadingWidth: 20,
-                centerTitle: true,
-                title: GestureDetector(
-                  onDoubleTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "Characters",
-                    style: TextStyle(
-                        fontFamily: 'OpenSans',
-                        fontSize: 21,
-                        fontWeight: FontWeight.w500),
-                  ),
-                )),
+              backgroundColor: Colors.white,
+              leadingWidth: 20,
+              centerTitle: true,
+              title: Text(
+                "Characters",
+                style: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 21,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
           )),
       body: DefaultTabController(
           length: 3,

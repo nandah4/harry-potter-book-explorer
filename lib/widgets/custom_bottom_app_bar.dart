@@ -11,6 +11,14 @@ class CustomBottomAppBar extends StatefulWidget {
 }
 
 class _CustomBottomAppBar extends State<CustomBottomAppBar> {
+  Widget _buildNavIcon(
+      {required int index, required String activeIcon, required String icon}) {
+    final isSelected = widget.selectedIndex == index;
+    final iconName = isSelected ? activeIcon : icon;
+    return SvgPicture.asset("assets/icons/$iconName.svg",
+        width: 25, height: 25);
+  }
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
@@ -18,25 +26,25 @@ class _CustomBottomAppBar extends State<CustomBottomAppBar> {
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/Home.svg",
-                width: 25, height: 25),
+            icon: _buildNavIcon(
+                index: 0, activeIcon: "Home_active", icon: "Home"),
             label: "Home",
           ),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset("assets/icons/Document.svg",
-                  width: 25, height: 25),
+              icon: _buildNavIcon(
+                  index: 1, activeIcon: "Document_active", icon: "Document"),
               label: "Character"),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset("assets/icons/Heart.svg",
-                  width: 25, height: 25),
-              label: "Favourite"),
+              icon: _buildNavIcon(
+                  index: 2, activeIcon: "Heart_active", icon: "Heart"),
+              label: "Favorite"),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset("assets/icons/User.svg",
-                  width: 25, height: 25),
+              icon: _buildNavIcon(
+                  index: 3, activeIcon: "User_active", icon: "User"),
               label: "Profile"),
         ],
         currentIndex: widget.selectedIndex ?? 0,
-        selectedItemColor: Colors.amber,
+        selectedItemColor: Colors.lightBlue,
         onTap: widget.onItemTap);
   }
 }

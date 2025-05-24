@@ -17,6 +17,9 @@ class CharactersTab extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: [
+            const SizedBox(
+              height: 10,
+            ),
             Expanded(
                 child: FutureBuilder(
                     future: futureCharacters,
@@ -71,14 +74,14 @@ class CharacterItem extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 125,
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       margin: EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
           color: Colors.black12,
           blurRadius: 1,
         )
-      ], color: Colors.white, borderRadius: BorderRadius.circular(14)),
+      ], color: Colors.white, borderRadius: BorderRadius.circular(10)),
       child: Row(
         children: [
           SizedBox(
