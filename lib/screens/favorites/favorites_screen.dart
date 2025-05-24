@@ -13,8 +13,20 @@ class FavoritesScreen extends StatefulWidget {
 }
 
 class _FavoritesScreen extends State<FavoritesScreen> {
-  final data1 = HiveBoxes.favoriteBox.get('1');
-  final List<FavoriteModel> items = FavoriteService.getAll();
+  // List<FavoriteModel> items = [];
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   loadDataFavorite();
+  // }
+
+  // void loadDataFavorite() {
+  //   final getItems = FavoriteService.getAll();
+  //   setState(() {
+  //     items = getItems;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -38,76 +50,57 @@ class _FavoritesScreen extends State<FavoritesScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(children: [
           Expanded(
-              child: ListView.builder(
-                  itemCount: items.length,
-                  itemBuilder: (context, index) {
-                    final item = items[index];
-                    return Dismissible(
-                        key: Key("${item.id}_${item.name}"),
-                        direction: DismissDirection.endToStart,
-                        dismissThresholds: const {
-                          DismissDirection.endToStart: 0.3
-                        },
-                        background: Container(
-                          padding: EdgeInsets.only(right: 10),
-                          alignment: Alignment.centerRight,
-                          decoration: BoxDecoration(color: Colors.red),
-                          child: const Icon(
-                            Icons.delete,
-                            size: 18,
-                            color: Colors.white,
-                          ),
-                        ),
-                        onDismissed: (direction) async {
-                          final removed =
-                              await FavoriteService().removeItems(item);
+              child: ValueListenableBuilder(
+                  valueListenable: HiveBoxes.favoriteBox.listenable(),
+                  builder: (context, box, _) {
+                    final items = FavoriteService.getAll();
 
-                          showFavoriteSnackbar(context, removed, "removed");
-                        },
-                        child: Container(
-                            width: double.infinity,
-                            padding: EdgeInsets.symmetric(vertical: 20),
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                                        width: 1,
-                                        color: Colors.grey.shade300))),
-                            child: Text(
-                              "${index + 1} -  ${item.name}",
-                              style: TextStyle(
-                                fontFamily: 'OpenSans',
-                                fontSize: 14,
+                    return ListView.builder(
+                        itemCount: items.length,
+                        itemBuilder: (context, index) {
+                          final item = items[index];
+                          return Dismissible(
+                              key: Key("${item.id}_${item.name}"),
+                              direction: DismissDirection.endToStart,
+                              dismissThresholds: const {
+                                DismissDirection.endToStart: 0.3
+                              },
+                              background: Container(
+                                padding: EdgeInsets.only(right: 10),
+                                alignment: Alignment.centerRight,
+                                decoration: BoxDecoration(color: Colors.red),
+                                child: const Icon(
+                                  Icons.delete,
+                                  size: 18,
+                                  color: Colors.white,
+                                ),
                               ),
-                            )));
+                              onDismissed: (direction) async {
+                                final removed =
+                                    await FavoriteService().removeItems(item);
+
+                                showFavoriteSnackbar(
+                                    context, removed, "removed");
+                              },
+                              child: Container(
+                                  width: double.infinity,
+                                  padding: EdgeInsets.symmetric(vertical: 20),
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                          bottom: BorderSide(
+                                              width: 1,
+                                              color: Colors.grey.shade300))),
+                                  child: Text(
+                                    "${index + 1} -  ${item.name}",
+                                    style: TextStyle(
+                                      fontFamily: 'OpenSans',
+                                      fontSize: 14,
+                                    ),
+                                  )));
+                        });
                   }))
         ]),
       ),
     );
   }
 }
-
-// GestureDetector(
-//                         onHorizontalDragUpdate: (details) {
-//                           if (details.delta.dx < -20) {
-//                             print("Hapus ${item.id}");
-//                           }
-//                         },
-//                         child: Container(
-//                           padding: EdgeInsets.symmetric(vertical: 20),
-//                           decoration: BoxDecoration(
-//                               gradient: LinearGradient(
-//                                   begin: Alignment.centerLeft,
-//                                   end: Alignment.centerRight,
-//                                   stops: [0., 1.5],
-//                                   colors: [Colors.white, Colors.blue]),
-//                               border: Border(
-//                                   bottom: BorderSide(
-//                                       width: 1, color: Colors.grey.shade300))),
-//                           child: Text(
-//                             "${index + 1} -  ${item.name}",
-//                             style: TextStyle(
-//                               fontFamily: 'OpenSans',
-//                               fontSize: 14,
-//                             ),
-//                           ),
-//                         ));
