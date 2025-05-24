@@ -2,21 +2,26 @@ import 'dart:ui';
 
 import 'package:fetch_stories/core/hive/hive_box.dart';
 import 'package:fetch_stories/core/services/favorite_service.dart';
+import 'package:fetch_stories/core/utils/snackbar.dart';
 import 'package:fetch_stories/data/models/book_model.dart';
 import 'package:fetch_stories/data/models/favorite_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 
 class DetailBookScreen extends StatelessWidget {
   DetailBookScreen({super.key, required this.book});
   final BookModel book;
 
+  SnackBar snackBars(context) {
+    return SnackBar(content: const Text("Succes"));
+  }
+
   @override
   Widget build(BuildContext context) {
     final item = FavoriteModel(id: "${book.index}", name: "${book.title}");
 
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -64,35 +69,45 @@ class DetailBookScreen extends StatelessWidget {
                         ),
                       )),
                   Positioned(
-                      top: 50,
+                      top: 55,
                       left: 15,
                       child: Row(
-                        spacing: 15,
+                        spacing: 10,
                         children: [
                           GestureDetector(
                             onTap: () => Navigator.pop(context),
                             child: Container(
-                              width: 50,
-                              height: 50,
+                              width: 45,
+                              height: 45,
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(100),
                               ),
                               child: const Icon(
                                 Icons.arrow_back_outlined,
-                                size: 25,
+                                size: 24,
                               ),
                             ),
                           ),
                           GestureDetector(
-                            onTap: () => FavoriteService().addItems(item),
+                            onTap: () async {
+                              final added =
+                                  await FavoriteService().addItems(item);
+
+                              showFavoriteSnackbar(context, added);
+                            },
                             child: Container(
-                              width: 50,
-                              height: 50,
+                              width: 45,
+                              height: 45,
+                              padding: EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(100)),
-                              child: Icon(Icons.add),
+                              child: SvgPicture.asset(
+                                "assets/icons/Heart.svg",
+                                height: 25,
+                                width: 25,
+                              ),
                             ),
                           )
                         ],
@@ -149,6 +164,6 @@ class DetailBookScreen extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    );
   }
 }
