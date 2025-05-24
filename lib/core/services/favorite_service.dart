@@ -15,4 +15,14 @@ class FavoriteService {
       return true;
     }
   }
+
+  Future<bool> removeItems(FavoriteModel item) async {
+    itemId = "${item.name}${item.id}";
+    await HiveBoxes.favoriteBox.delete(itemId);
+    return true;
+  }
+
+  static List<FavoriteModel> getAll() {
+    return HiveBoxes.favoriteBox.values.toList();
+  }
 }

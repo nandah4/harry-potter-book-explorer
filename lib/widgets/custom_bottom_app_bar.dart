@@ -21,30 +21,36 @@ class _CustomBottomAppBar extends State<CustomBottomAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: _buildNavIcon(
-                index: 0, activeIcon: "Home_active", icon: "Home"),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-              icon: _buildNavIcon(
-                  index: 1, activeIcon: "Document_active", icon: "Document"),
-              label: "Character"),
-          BottomNavigationBarItem(
-              icon: _buildNavIcon(
-                  index: 2, activeIcon: "Heart_active", icon: "Heart"),
-              label: "Favorite"),
-          BottomNavigationBarItem(
-              icon: _buildNavIcon(
-                  index: 3, activeIcon: "User_active", icon: "User"),
-              label: "Profile"),
-        ],
-        currentIndex: widget.selectedIndex ?? 0,
-        selectedItemColor: Colors.lightBlue,
-        onTap: widget.onItemTap);
+    return Material(
+        elevation: 10.0,
+        child: SizedBox(
+            height: 105,
+            child: BottomNavigationBar(
+                backgroundColor: Colors.white,
+                type: BottomNavigationBarType.fixed,
+                items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: _buildNavIcon(
+                        index: 0, activeIcon: "Home_active", icon: "Home"),
+                    label: "Home",
+                  ),
+                  BottomNavigationBarItem(
+                      icon: _buildNavIcon(
+                          index: 1,
+                          activeIcon: "Document_active",
+                          icon: "Document"),
+                      label: "Character"),
+                  BottomNavigationBarItem(
+                      icon: _buildNavIcon(
+                          index: 2, activeIcon: "Heart_active", icon: "Heart"),
+                      label: "Favorite"),
+                  BottomNavigationBarItem(
+                      icon: _buildNavIcon(
+                          index: 3, activeIcon: "User_active", icon: "User"),
+                      label: "Profile"),
+                ],
+                currentIndex: widget.selectedIndex ?? 0,
+                selectedItemColor: Colors.lightBlue,
+                onTap: widget.onItemTap)));
   }
 }

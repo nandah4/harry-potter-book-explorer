@@ -10,17 +10,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 
 class DetailBookScreen extends StatelessWidget {
-  DetailBookScreen({super.key, required this.book});
+  DetailBookScreen({super.key, required this.book})
+      : item = FavoriteModel(id: "${book.index}", name: "${book.title}");
   final BookModel book;
-
-  SnackBar snackBars(context) {
-    return SnackBar(content: const Text("Succes"));
-  }
+  final FavoriteModel item;
 
   @override
   Widget build(BuildContext context) {
-    final item = FavoriteModel(id: "${book.index}", name: "${book.title}");
-
     return Scaffold(
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -94,7 +90,7 @@ class DetailBookScreen extends StatelessWidget {
                               final added =
                                   await FavoriteService().addItems(item);
 
-                              showFavoriteSnackbar(context, added);
+                              showFavoriteSnackbar(context, added, "added");
                             },
                             child: Container(
                               width: 45,
