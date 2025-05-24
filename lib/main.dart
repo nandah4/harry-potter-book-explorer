@@ -1,24 +1,22 @@
 import 'dart:async';
-
 import 'package:fetch_stories/core/hive/hive_box.dart';
 import 'package:fetch_stories/core/hive/hive_setup.dart';
-import 'package:fetch_stories/data/models/favorite_model.dart';
 import 'package:fetch_stories/screens/characters/characters_screen.dart';
 import 'package:fetch_stories/screens/favorites/favorites_screen.dart';
 import 'package:fetch_stories/screens/home/home_screen.dart';
 import 'package:fetch_stories/widgets/custom_bottom_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:path_provider/path_provider.dart';
+
+final GlobalKey<ScaffoldMessengerState> scaffoldMessKey =
+    GlobalKey<ScaffoldMessengerState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // final dir = await getApplicationDocumentsDirectory();
   await Hive.initFlutter();
   registerAdapters(); // register custom model
-
   await HiveBoxes.initFavoriteBox(); // init boxes
 
   runApp(MyApp());
@@ -56,7 +54,6 @@ class _MyApp extends State<MyApp> {
     setState(() {
       _selectedIndex = index;
     });
-    print(_selectedIndex);
     _saveIndexToPref();
   }
 
@@ -69,6 +66,7 @@ class _MyApp extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: scaffoldMessKey,
       home: _selectedIndex == null
           ? Scaffold(
               body: Center(

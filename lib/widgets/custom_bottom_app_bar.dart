@@ -44,10 +44,10 @@ class _CustomBottomAppBar extends State<CustomBottomAppBar> {
                       icon: _buildNavIcon(
                           index: 2, activeIcon: "Heart_active", icon: "Heart"),
                       label: "Favorite"),
-                  BottomNavigationBarItem(
-                      icon: _buildNavIcon(
-                          index: 3, activeIcon: "User_active", icon: "User"),
-                      label: "Profile"),
+                  // BottomNavigationBarItem(
+                  //     icon: _buildNavIcon(
+                  //         index: 3, activeIcon: "User_active", icon: "User"),
+                  //     label: "Profile"),
                 ],
                 currentIndex: widget.selectedIndex ?? 0,
                 selectedItemColor: Colors.lightBlue,

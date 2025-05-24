@@ -1,10 +1,9 @@
 import 'dart:ui';
-
-import 'package:fetch_stories/core/hive/hive_box.dart';
 import 'package:fetch_stories/core/services/favorite_service.dart';
 import 'package:fetch_stories/core/utils/snackbar.dart';
 import 'package:fetch_stories/data/models/book_model.dart';
 import 'package:fetch_stories/data/models/favorite_model.dart';
+import 'package:fetch_stories/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
@@ -89,8 +88,8 @@ class DetailBookScreen extends StatelessWidget {
                             onTap: () async {
                               final added =
                                   await FavoriteService().addItems(item);
-
-                              showFavoriteSnackbar(context, added, "added");
+                              showFavoriteSnackbar(
+                                  scaffoldMessKey.currentState, added, "added");
                             },
                             child: Container(
                               width: 45,

@@ -1,10 +1,8 @@
-
 import 'package:fetch_stories/screens/detail_book_screen.dart';
 import 'package:fetch_stories/widgets/recommended_card.dart';
 import 'package:flutter/material.dart';
 import 'package:fetch_stories/data/models/book_model.dart';
 import 'package:fetch_stories/core/services/books_service.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   final Future<List<BookModel>> futureBook = BooksService().fetchBook();
@@ -15,11 +13,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(kToolbarHeight),
           child: Container(
@@ -49,19 +47,19 @@ class _HomeScreen extends State<HomeScreen> {
                               color: Colors.white))
                     ],
                   ),
-                  actions: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(200)),
-                      child: SvgPicture.asset(
-                        "assets/icons/Heart.svg",
-                        height: 25,
-                        width: 25,
-                      ),
-                    )
-                  ],
+                  // actions: [
+                  //   Container(
+                  //     padding: const EdgeInsets.all(10),
+                  //     decoration: BoxDecoration(
+                  //         color: Colors.white,
+                  //         borderRadius: BorderRadius.circular(200)),
+                  //     child: SvgPicture.asset(
+                  //       "assets/icons/Heart.svg",
+                  //       height: 25,
+                  //       width: 25,
+                  //     ),
+                  //   )
+                  // ],
                   centerTitle: false,
                   backgroundColor: Colors.transparent,
                 ),
@@ -133,17 +131,16 @@ class _HomeScreen extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          "Recommended For You",
+                          "Recommended Books For You",
                           style: TextStyle(
                               fontFamily: 'OpenSans',
-                              color: Colors.black,
-                              fontSize: 18,
+                              fontSize: 17,
                               fontWeight: FontWeight.w400),
                         ),
                       ],
                     ))),
             const SizedBox(
-              height: 10,
+              height: 15,
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width,
