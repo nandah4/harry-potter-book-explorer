@@ -21,10 +21,6 @@ void main() async {
 
   await HiveBoxes.initFavoriteBox(); // init boxes
 
-  final fav1 = FavoriteModel(id: "1", name: "Bang", image: "xx");
-
-  await HiveBoxes.favoriteBox.put('1', fav1);
-
   runApp(MyApp());
 }
 

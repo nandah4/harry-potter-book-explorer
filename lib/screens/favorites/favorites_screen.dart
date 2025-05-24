@@ -32,8 +32,11 @@ class _FavoritesScreen extends State<FavoritesScreen> {
               ),
             ),
           )),
-      body: Column(
-        children: [Text("${data1?.name}")],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: List.generate(10, (index) => Text("Hello ${index}")),
+        ),
       ),
     );
   }

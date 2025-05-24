@@ -5,6 +5,6 @@ class HiveBoxes {
   static late Box<FavoriteModel> favoriteBox;
 
   static Future<void> initFavoriteBox() async {
-    favoriteBox = await Hive.openBox<FavoriteModel>('favoriteBox');
+    favoriteBox = await Hive.openBox("favBooks");
   }
 }

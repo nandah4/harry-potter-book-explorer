@@ -8,8 +8,7 @@ class FavoriteModel extends HiveObject {
   final String id;
   @HiveField(1)
   final String name;
-  @HiveField(2)
-  final String image;
 
-  FavoriteModel({required this.id, required this.name, required this.image});
+
+  FavoriteModel({required this.id, required this.name});
 }
